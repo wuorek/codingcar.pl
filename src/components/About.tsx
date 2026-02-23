@@ -2,7 +2,6 @@
 
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
-import Image from "next/image";
 
 const advantages = [
   {
@@ -44,61 +43,78 @@ const advantages = [
   },
 ];
 
-function PhotoCard() {
+function TechCard() {
   return (
-    <div className="relative max-w-md mx-auto">
-      {/* Offset amber border decoration */}
-      <div
-        className="absolute -bottom-3 -right-3 inset-0 pointer-events-none"
-        style={{ border: "1px solid oklch(65% 0.185 50 / 0.35)" }}
-      />
-
-      {/* Main image */}
-      <div
-        className="relative overflow-hidden"
-        style={{ border: "1px solid oklch(22% 0.022 45)" }}
+    <div
+      className="relative w-full aspect-square max-w-md mx-auto overflow-hidden"
+      style={{ background: "oklch(15% 0.02 45)", border: "1px solid oklch(22% 0.022 45)" }}
+    >
+      {/* Circuit decoration */}
+      <svg
+        className="absolute inset-0 w-full h-full"
+        viewBox="0 0 400 400"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style={{ opacity: 0.12 }}
       >
-        <Image
-          src="https://codingcar.pl/images/design/article-main-b.webp"
-          alt="Wnętrze samochodu — profesjonalne kodowanie CodingCar"
-          width={600}
-          height={450}
-          className="w-full h-auto object-cover"
-          style={{ display: "block" }}
-        />
-        {/* Dark overlay gradient at bottom */}
+        <circle cx="200" cy="200" r="180" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+        <circle cx="200" cy="200" r="140" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" strokeDasharray="8 4" />
+        <circle cx="200" cy="200" r="100" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+        <circle cx="200" cy="200" r="60" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" strokeDasharray="4 4" />
+        <line x1="200" y1="20" x2="200" y2="380" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+        <line x1="20" y1="200" x2="380" y2="200" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+        <line x1="72" y1="72" x2="328" y2="328" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+        <line x1="328" y1="72" x2="72" y2="328" stroke="oklch(65% 0.185 50)" strokeWidth="0.5" />
+      </svg>
+
+      {/* Center content */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
         <div
-          className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
+          className="font-display font-extrabold select-none"
           style={{
-            background:
-              "linear-gradient(to top, oklch(10% 0.015 45 / 0.8) 0%, transparent 100%)",
+            fontSize: "clamp(6rem, 15vw, 9rem)",
+            lineHeight: 1,
+            fontFamily: "var(--font-syne)",
+            color: "oklch(65% 0.185 50 / 0.15)",
           }}
-        />
-        {/* Label badge */}
-        <div
-          className="absolute bottom-4 left-4 px-3 py-1.5 flex items-center gap-2"
-          style={{ background: "var(--accent)" }}
         >
-          <span
-            className="text-xs font-semibold tracking-widest uppercase"
-            style={{ color: "oklch(10% 0.015 45)", fontFamily: "var(--font-outfit)" }}
-          >
-            Certyfikowany sprzęt
-          </span>
+          KP
+        </div>
+        <div
+          className="font-display font-bold text-2xl tracking-widest mt-2"
+          style={{ fontFamily: "var(--font-syne)", color: "var(--accent)" }}
+        >
+          CODINGCAR
+        </div>
+        <div
+          className="text-xs tracking-[0.3em] mt-1 uppercase"
+          style={{ color: "var(--text-muted)" }}
+        >
+          Kamil Pstrągowski
         </div>
       </div>
 
-      {/* Corner accent marks */}
+      {/* Corner decorations */}
       {[
-        "top-0 left-0",
-        "top-0 right-0 rotate-90",
+        "top-4 left-4",
+        "top-4 right-4 rotate-90",
+        "bottom-4 right-4 rotate-180",
+        "bottom-4 left-4 -rotate-90",
       ].map((cls, i) => (
-        <div key={i} className={`absolute ${cls} pointer-events-none`}>
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-            <path d="M0 18V3a3 3 0 013-3h15" stroke="oklch(65% 0.185 50)" strokeWidth="1.5" />
+        <div key={i} className={`absolute ${cls}`}>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path d="M0 20V4a4 4 0 014-4h16" stroke="oklch(65% 0.185 50)" strokeWidth="1" />
           </svg>
         </div>
       ))}
+
+      {/* Animated glow */}
+      <div
+        className="absolute inset-0 pointer-events-none animate-pulse-glow"
+        style={{
+          background: "radial-gradient(circle at 50% 50%, oklch(65% 0.185 50 / 0.06) 0%, transparent 65%)",
+        }}
+      />
     </div>
   );
 }
@@ -228,7 +244,7 @@ export default function About() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.3, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
           >
-            <PhotoCard />
+            <TechCard />
 
             {/* Social links below */}
             <div className="flex gap-4 mt-6 justify-center">

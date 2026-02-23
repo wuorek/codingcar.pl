@@ -77,7 +77,7 @@ export default function Process() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex items-center justify-center gap-3 mb-6"
           >
-            <span className="section-label">005 — JAK DZIAŁAMY</span>
+            <span className="section-label">004 — JAK DZIAŁAMY</span>
           </motion.div>
 
           <motion.h2
